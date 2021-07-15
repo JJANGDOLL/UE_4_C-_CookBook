@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Warrior.h"
+#include "GameFramework/PlayerInput.h"
 
 // Sets default values
 AWarrior::AWarrior()
@@ -9,6 +10,10 @@ AWarrior::AWarrior()
 	PrimaryActorTick.bCanEverTick = true;
 
     LastInput = FVector2D::ZeroVector;
+
+
+
+
 }
 
 // Called when the game starts or when spawned
@@ -42,11 +47,25 @@ void AWarrior::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
     check(PlayerInputComponent);
+
+
     PlayerInputComponent->BindAxis("Forward", this, &AWarrior::Forward);
     PlayerInputComponent->BindAxis("Back", this, &AWarrior::Back);
     PlayerInputComponent->BindAxis("Left", this, &AWarrior::Left);
     PlayerInputComponent->BindAxis("Right", this, &AWarrior::Right);
     PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AWarrior::Jump);
+
+    FInputAxisKeyMapping forwardKey("Forward", EKeys::W, 1.f);
+    FInputAxisKeyMapping backKey("Back", EKeys::S, 1.f);
+    FInputAxisKeyMapping rightKey("Right", EKeys::D, 1.f);
+    FInputAxisKeyMapping leftKey("Left", EKeys::A, 1.f);
+    FInputActionKeyMapping jumpKey("Jump", EKeys::SpaceBar, 0, 0, 0, 0);
+
+    GetWorld()->GetFirstPlayerController()->PlayerInput->AddAxisMapping(forwardKey);
+    GetWorld()->GetFirstPlayerController()->PlayerInput->AddAxisMapping(backKey);
+    GetWorld()->GetFirstPlayerController()->PlayerInput->AddAxisMapping(rightKey);
+    GetWorld()->GetFirstPlayerController()->PlayerInput->AddAxisMapping(leftKey);
+    GetWorld()->GetFirstPlayerController()->PlayerInput->AddActionMapping(jumpKey);
 }
 
 void AWarrior::Forward(float amount)
