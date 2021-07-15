@@ -46,6 +46,7 @@ void AWarrior::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
     PlayerInputComponent->BindAxis("Back", this, &AWarrior::Back);
     PlayerInputComponent->BindAxis("Left", this, &AWarrior::Left);
     PlayerInputComponent->BindAxis("Right", this, &AWarrior::Right);
+    PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AWarrior::Jump);
 }
 
 void AWarrior::Forward(float amount)
