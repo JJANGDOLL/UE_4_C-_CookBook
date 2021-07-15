@@ -42,7 +42,10 @@ void AEventHandler::NotifyActorBeginOverlap(AActor * OtherActor)
 
         if (MyGameMode != nullptr)
         {
-            MyGameMode->MyStandardDelegate.ExecuteIfBound();
+            //MyGameMode->MyStandardDelegate.ExecuteIfBound();
+
+            auto Color = FLinearColor(1, 0, 0, 1);
+            MyGameMode->MyParamaterDelegate.ExecuteIfBound(Color);
         }
     }
 }

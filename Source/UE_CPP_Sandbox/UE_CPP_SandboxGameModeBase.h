@@ -10,6 +10,7 @@
  * 
  */
 DECLARE_DELEGATE(FStandardDelegateSignature)
+DECLARE_DELEGATE_OneParam(FParamDelegateSignature, FLinearColor);
 
 UCLASS()
 class UE_CPP_SANDBOX_API AUE_CPP_SandboxGameModeBase : public AGameModeBase
@@ -20,4 +21,5 @@ public:
     AUE_CPP_SandboxGameModeBase();
 
     FStandardDelegateSignature MyStandardDelegate;
+    FParamDelegateSignature MyParamaterDelegate;
 };
