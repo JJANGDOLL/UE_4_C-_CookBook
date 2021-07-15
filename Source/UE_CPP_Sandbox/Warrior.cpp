@@ -8,7 +8,7 @@ AWarrior::AWarrior()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-    lastInput = FVector2D::ZeroVector;
+    LastInput = FVector2D::ZeroVector;
 }
 
 // Called when the game starts or when spawned
@@ -23,6 +23,17 @@ void AWarrior::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+    float len = LastInput.Size();
+
+    if (len > 1.f)
+    {
+        LastInput /= len;
+    }
+
+    AddMovementInput(GetActorForwardVector(), LastInput.Y);
+    AddMovementInput(GetActorRightVector(), LastInput.X);
+
+    LastInput = FVector2D(0.f, 0.f);
 }
 
 // Called to bind functionality to input
@@ -39,22 +50,25 @@ void AWarrior::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void AWarrior::Forward(float amount)
 {
-    AddMovementInput(GetActorForwardVector(), amount);
-    lastInput.Y + amount;
+    //AddMovementInput(GetActorForwardVector(), amount);
+    LastInput.Y += amount;
 }
 
 void AWarrior::Back(float amount)
 {
-    AddMovementInput(-GetActorForwardVector(), amount);
+    //AddMovementInput(-GetActorForwardVector(), amount);
+    LastInput.Y -= amount;
 }
 
 void AWarrior::Right(float amount)
 {
-    AddMovementInput(GetActorRightVector(), amount);
+    //AddMovementInput(GetActorRightVector(), amount);
+    LastInput.X += amount;
 }
 
 void AWarrior::Left(float amount)
 {
-    AddMovementInput(-GetActorRightVector(), amount);
+    //AddMovementInput(-GetActorRightVector(), amount);
+    LastInput.X -= amount;
 }
 
