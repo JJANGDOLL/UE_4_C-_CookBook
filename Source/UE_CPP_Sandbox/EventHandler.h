@@ -7,6 +7,8 @@
 #include "Components/BoxComponent.h"
 #include "EventHandler.generated.h"
 
+DECLARE_EVENT(AEventHandler, FPlayerEntered);
+
 UCLASS()
 class UE_CPP_SANDBOX_API AEventHandler : public AActor
 {
@@ -32,4 +34,6 @@ public:
 
     UFUNCTION()
     virtual void NotifyActorEndOverlap(AActor* OtherActor) override;
+
+    FPlayerEntered OnPlayerEntered;
 };
