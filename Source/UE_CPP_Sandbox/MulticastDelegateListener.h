@@ -4,23 +4,29 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "ParamDelegateListener.generated.h"
+#include "MulticastDelegateListener.generated.h"
 
 class UPointLightComponent;
+
 UCLASS()
-class UE_CPP_SANDBOX_API AParamDelegateListener : public AActor
+class UE_CPP_SANDBOX_API AMulticastDelegateListener : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AParamDelegateListener();
+	AMulticastDelegateListener();
 
     UFUNCTION()
-    void SetLightColor(FLinearColor LightColor, bool EnableLight);
+    void ToggleLight();
+
+    UFUNCTION()
+    virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
     UPROPERTY()
     UPointLightComponent* PointLight;
+
+    FDelegateHandle MyDelegateHandle;
 
 protected:
 	// Called when the game starts or when spawned

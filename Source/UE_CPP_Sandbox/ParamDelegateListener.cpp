@@ -15,9 +15,10 @@ AParamDelegateListener::AParamDelegateListener()
     RootComponent = PointLight;
 }
 
-void AParamDelegateListener::SetLightColor(FLinearColor LightColor)
+void AParamDelegateListener::SetLightColor(FLinearColor LightColor, bool EnableLight)
 {
     PointLight->SetLightColor(LightColor);
+    PointLight->SetVisibility(EnableLight);
 }
 
 // Called when the game starts or when spawned
@@ -34,7 +35,7 @@ void AParamDelegateListener::BeginPlay()
 
         if (MyGameMode != nullptr)
         {
-            MyGameMode->MyParamaterDelegate.BindUObject(this, &AParamDelegateListener::SetLightColor);
+            MyGameMode->MyParamaterDelegate.BindUObject(this, &AParamDelegateListener::SetLightColor, false);
         }
     }
 }

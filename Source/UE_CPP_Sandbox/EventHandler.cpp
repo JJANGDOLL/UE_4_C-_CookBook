@@ -44,8 +44,12 @@ void AEventHandler::NotifyActorBeginOverlap(AActor * OtherActor)
         {
             //MyGameMode->MyStandardDelegate.ExecuteIfBound();
 
-            auto Color = FLinearColor(1, 0, 0, 1);
-            MyGameMode->MyParamaterDelegate.ExecuteIfBound(Color);
+            //auto Color = FLinearColor(1, 0, 0, 1);
+            //MyGameMode->MyParamaterDelegate.ExecuteIfBound(Color);
+
+            MyGameMode->MyMulticastDelegate.Broadcast();
+
+            //OnPlayerEntered.Broadcast();
         }
     }
 }
