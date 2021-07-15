@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "EventHandler.h"
+#include "Kismet/GameplayStatics.h"
+#include "UE_CPP_SandboxGameModeBase.h"
 
 // Sets default values
 AEventHandler::AEventHandler()
@@ -31,6 +33,18 @@ void AEventHandler::NotifyActorBeginOverlap(AActor * OtherActor)
     auto Message = FString::Printf(TEXT("%s entered me"), *(OtherActor->GetName()));
 
     GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Red, Message);
+
+    UWorld* TheWorld = GetWorld();
+    if (TheWorld != nullptr)
+    {
+        AGameModeBase* GameMode = UGameplayStatics::GetGameMode(TheWorld);
+        AUE_CPP_SandboxGameModeBase* MyGameMode = Cast<AUE_CPP_SandboxGameModeBase>(GameMode);
+
+        if (MyGameMode != nullptr)
+        {
+            MyGameMode->MyStandardDelegate.ExecuteIfBound();
+        }
+    }
 }
 
 void AEventHandler::NotifyActorEndOverlap(AActor * OtherActor)

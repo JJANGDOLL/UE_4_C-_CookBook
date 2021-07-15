@@ -9,6 +9,8 @@
 /**
  * 
  */
+DECLARE_DELEGATE(FStandardDelegateSignature)
+
 UCLASS()
 class UE_CPP_SANDBOX_API AUE_CPP_SandboxGameModeBase : public AGameModeBase
 {
@@ -16,4 +18,6 @@ class UE_CPP_SANDBOX_API AUE_CPP_SandboxGameModeBase : public AGameModeBase
 
 public:
     AUE_CPP_SandboxGameModeBase();
+
+    FStandardDelegateSignature MyStandardDelegate;
 };
