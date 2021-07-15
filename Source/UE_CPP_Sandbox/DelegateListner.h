@@ -28,6 +28,9 @@ public:
     UFUNCTION()
     void EnableLight();
 
+    UFUNCTION()
+    virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
     UPROPERTY()
     UPointLightComponent* PointLight;
 };

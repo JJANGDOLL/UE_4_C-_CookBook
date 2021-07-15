@@ -50,3 +50,20 @@ void ADelegateListner::EnableLight()
     PointLight->SetVisibility(true);
 }
 
+void ADelegateListner::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+    Super::EndPlay(EndPlayReason);
+
+    UWorld* TheWorld = GetWorld();
+    if (TheWorld != nullptr)
+    {
+        AGameModeBase* GameMode = UGameplayStatics::GetGameMode(TheWorld);
+
+        AUE_CPP_SandboxGameModeBase* MyGameMode = Cast<AUE_CPP_SandboxGameModeBase>(GameMode);
+        if (MyGameMode != nullptr)
+        {
+            MyGameMode->MyStandardDelegate.Unbind();
+        }
+    }
+}
+
