@@ -24,4 +24,6 @@ public:
     FStandardDelegateSignature MyStandardDelegate;
     FParamDelegateSignature MyParamaterDelegate;
     FMulticastDelegateSignature MyMulticastDelegate;
+    
+
 };
