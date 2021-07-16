@@ -3,6 +3,7 @@
 #include "Warrior.h"
 #include "GameFramework/PlayerInput.h"
 #include "UE_CPP_Input_Gamemode.h"
+#include "Components/CapsuleComponent.h"
 
 // Sets default values
 AWarrior::AWarrior()
@@ -22,6 +23,21 @@ void AWarrior::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void AWarrior::OnOverlapsBegin_Implementation(UPrimitiveComponent * Comp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIdx, bool bFromSweep, const FHitResult & SweepResult)
+{
+    UE_LOG(LogTemp, Warning, TEXT("Warrior Begin Overlap"));
+}
+
+void AWarrior::PostInitializeComponents()
+{
+    Super::PostInitializeComponents();
+
+    if (RootComponent)
+    {
+        GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &AWarrior::OnOverlapsBegin);
+    }
 }
 
 // Called every frame

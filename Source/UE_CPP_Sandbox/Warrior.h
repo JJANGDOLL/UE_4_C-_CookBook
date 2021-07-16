@@ -21,6 +21,11 @@ protected:
 
     FVector2D LastInput;
 
+    UFUNCTION(BlueprintNativeEvent, Category = Collision)
+    void OnOverlapsBegin(UPrimitiveComponent* Comp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIdx, bool bFromSweep, const FHitResult& SweepResult);
+
+    virtual void PostInitializeComponents() override;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
