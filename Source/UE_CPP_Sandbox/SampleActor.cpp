@@ -25,7 +25,7 @@ void ASampleActor::BeginPlay()
     Super::BeginPlay();
 }
 
-//FString ASampleActor::UFuncString()
-//{
-//    return FString::Printf(TEXT("%s"), *Name);
-//}
+FString ASampleActor::UFuncString()
+{
+    return FString::Printf(TEXT("%s"), *Name);
+}
