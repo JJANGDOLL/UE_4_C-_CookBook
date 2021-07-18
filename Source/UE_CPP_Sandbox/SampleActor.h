@@ -18,11 +18,11 @@ public:
     void BeginPlay() override;
 
 public:
-    //UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MyUFuncParam)
-    //FString Name;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MyUFuncParam)
+    FString Name;
 
-    //UFUNCTION(BlueprintCallable, Category=MyUFunc)
-    //FString UFuncString();
+    UFUNCTION(BlueprintCallable, Category=MyUFunc)
+    FString UFuncString();
 
     UPROPERTY()
     UStaticMeshComponent* Mesh;
